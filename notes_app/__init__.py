@@ -8,7 +8,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///notes_app.db"
 app.config['SECRET_KEY'] = "3bd7e299f5c85baff143fb40"
 
 db = SQLAlchemy(app)
-app.app_context().push()
+with app.app_context():
+    db.create_all()
 
 bcrypt = Bcrypt(app)
 
