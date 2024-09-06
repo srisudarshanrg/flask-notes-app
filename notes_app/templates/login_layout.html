@@ -16,12 +16,13 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/login_register.css') }}">
     </head>
     <body>
-        {% with messages = get_flashed_messages(categories=True)  %}
-            {% for msg in messages %}
+        {% with messages = get_flashed_messages(with_categories=True)  %}
+            {% for category, msg in messages %}
                 <!-- alert -->
-                <div class="alert alert-{{category}}" role="alert">
+                <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
                     {{msg}}
-                </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
 
                 <!-- toast -->
                 <div class="toast-container position-fixed bottom-0 end-0 p-3">
