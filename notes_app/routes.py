@@ -27,11 +27,11 @@ def login():
         attempted_user_email = User.query.filter_by(email=credential_entered).first()
         if attempted_user_username and CheckPasswordHash(attempted_user_username.password, bytes(password_entered, "utf-8")):
             login_user(attempted_user_username)
-            flash(message="You have been registered logged in successfully", category="info")
+            flash(message="You have been logged in successfully", category="info")
             return redirect(url_for("notes_app"))
         elif attempted_user_email and CheckPasswordHash(attempted_user_email.password, bytes(password_entered, "utf-8")):
-            login_user(attempted_user_username)
-            flash(message="You have been registered logged in successfully", category="info")        
+            login_user(attempted_user_email)
+            flash(message="You have been logged in successfully", category="info")        
             return redirect(url_for("notes_app"))
         else:
             flash(message="Incorrect Credentials", category="danger")
